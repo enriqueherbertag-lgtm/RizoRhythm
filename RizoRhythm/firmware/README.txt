@@ -7,8 +7,14 @@ Contenido planificado para esta carpeta:
 - [media]: Diagramas, renders 3D, fotos de prototipos
 
 NOTA LEGAL: Cualquier contenido futuro en esta carpeta estará sujeto a las licencias del proyecto:
-- Código: Apache 2.0 con Restricción Comercial
-- Documentación: CC BY-NC-ND 4.0
+
+## Estructura de Este Repositorio
+
+*   **`/docs`** - Documentación técnica (bajo licencia CC BY-NC-ND 4.0)
+*   **`/firmware`** - Código para prototipos (bajo licencia Apache 2.0 con restricción comercial)
+*   **`/hardware`** - Diseños y planos
+*   **`/simulations`** - Modelos
+*   **`/media`** - Gráficos y material visual
 
 Uso comercial prohibido sin acuerdo de licencia.
 Contacto: eaguayo@migst.cl
