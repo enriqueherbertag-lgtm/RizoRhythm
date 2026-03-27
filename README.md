@@ -1,5 +1,7 @@
 # RizoRhythm: Sistema de Diagnóstico Fitorrítmico Adaptativo
 
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
 **Sistema de diagnóstico agrícola basado en ritmos fitomecánicos y sensado de suelo, con IA en el edge.**
 
 RizoRhythm correlaciona ritmos mecánicos de las plantas (fitomecánica) con variables de suelo (humedad, nitrógeno) para detectar estrés de forma proactiva y adaptativa.
