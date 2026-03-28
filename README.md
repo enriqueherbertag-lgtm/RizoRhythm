@@ -92,8 +92,7 @@ El sistema correlaciona:
 
 RizoRhythm/
 ├── README.md
-├── LICENSE.md
-├── LICENSE_DOCS.md
+├── LICENSE
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
@@ -104,8 +103,7 @@ RizoRhythm/
 ├── firmware/ # Código para sensores y procesamiento
 ├── hardware/ # Diseños de PCB, esquemáticos
 ├── simulations/ # Modelos de crecimiento y estrés
-└── media/ # Gráficos, diagrama
-
+└── media/ # Gráficos, diagramas
 
 
 ---
@@ -123,8 +121,10 @@ RizoRhythm/
 
 - **OsteoFlux** — sistema de intervención ósea basado en resonancia  
   [Repositorio](https://github.com/enriqueherbertag-lgtm/osteoflux)
+
 - **Resonador-432** — dispositivo médico de resonancia dual  
   [Repositorio](https://github.com/enriqueherbertag-lgtm/Resonador-432)
+
 - **CORPUS** — sistema corporal artificial para IA  
   [Repositorio](https://github.com/enriqueherbertag-lgtm/Corpus)
 
@@ -132,10 +132,17 @@ RizoRhythm/
 
 ## Licencia
 
-**Código/Firmware:** Apache 2.0 con restricción de uso comercial.  
-**Documentación/Diseños:** Creative Commons BY-NC-ND 4.0 (Atribución-NoComercial-SinDerivadas).
+**CC BY-NC 4.0 (Attribution-NonCommercial 4.0 International)**
 
-*Este es un framework base open-source. El que quiera más precisión, menor latencia o features avanzadas… que lo modifique y contribuya.*
+Este proyecto está liberado bajo una licencia Creative Commons que permite:
+- ✅ Compartir y modificar
+- ✅ Uso personal, investigación, prototipos
+- ❌ **No permite uso comercial sin autorización expresa**
+
+**¿Quieres usar este diseño comercialmente?**  
+Contacta para una licencia comercial: **eaguayo@migst.cl**
+
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ---
 
@@ -146,11 +153,4 @@ Investigador independiente, Mackiber Labs
 Contacto: eaguayo@migst.cl  
 ORCID: 0009-0004-4615-6825  
 GitHub: [@enriqueherbertag-lgtm](https://github.com/enriqueherbertag-lgtm)
-
-
-
-
-
-
-
 
