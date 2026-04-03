@@ -1,141 +1,97 @@
-# RizoRhythm: Sistema de Diagnóstico Fitorrítmico Adaptativo
+# RizoRhythm: Diagnóstico agrícola por ritmo de plantas
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19394115.svg)](https://doi.org/10.5281/zenodo.19394115)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+[![EN](https://img.shields.io/badge/English-version-blue.svg)](./README.en.md)
 
-**Sistema de diagnóstico agrícola basado en ritmos fitomecánicos y sensado de suelo, con IA en el edge.**
+**Un sistema que detecta estrés en plantas antes de que se vean afectadas, midiendo su movimiento y el suelo.**
 
-RizoRhythm correlaciona ritmos mecánicos de las plantas (fitomecánica) con variables de suelo (humedad, nitrógeno) para detectar estrés de forma proactiva y adaptativa.
+## ¿Qué problema resuelve?
 
----
+Los sistemas agrícolas actuales detectan el estrés cuando la planta ya está dañada (hojas amarillas, marchitamiento). Para entonces, ya se perdió producción.
 
-## Problema que Resuelve
+**RizoRhythm detecta el estrés antes. Mucho antes.**
 
-- **Diagnóstico reactivo:** Los sistemas actuales detectan estrés cuando la planta ya está afectada.
-- **Sensado aislado:** La humedad o nutrientes se miden sin contexto del estado mecánico de la planta.
-- **Alta complejidad:** Soluciones agrícolas de precisión requieren equipos costosos y conectividad constante.
+## ¿Qué hace?
 
-**RizoRhythm permite diagnosticar estrés antes de que se manifieste visiblemente, correlacionando ritmo de la planta con condiciones de suelo.**
+Mide dos cosas al mismo tiempo:
+- **Ritmo de la planta**: movimientos del tallo y hojas (acelerómetro MPU-6050).
+- **Condiciones del suelo**: humedad y nitrógeno (sensores capacitivos + ISE).
 
----
+Una IA en el edge (ESP32 o Raspberry Pi) correlaciona ambos flujos. Si el ritmo se desvía del patrón normal para las condiciones de suelo, alerta automáticamente.
 
-## Arquitectura en Tres Capas
+## ¿Qué estrés detecta?
 
-| Capa | Función | Especificación |
-|------|---------|----------------|
-| **1. Sensado de Suelo** | Mide humedad y nitrógeno en la rizósfera | Sensores capacitivos + electrodos ISE, muestreo cada 15–60 min |
-| **2. Sensado de Ritmo** | Mide movimientos fitomecánicos (tallo, hojas) | Acelerómetro (MPU-6050), muestreo 10–100 Hz |
-| **3. IA Contextual** | Diagnóstico y sugerencia de acción en el edge | Modelo liviano (Random Forest / TinyML) en ESP32 o Raspberry Pi |
+- **Estrés hídrico**: la planta modifica su ritmo antes de marchitarse.
+- **Deficiencia de nitrógeno**: cambios en movimiento foliar antes de que amarillee.
 
----
+## ¿Para quién es?
 
-## Principio de Operación
-
-
-[Sensor de suelo] ──┐
-├── [IA en el edge] ──→ [Diagnóstico] ──→ [Acción (riego, alerta)]
-[Sensor de ritmo] ──┘
-
-
-
-El sistema correlaciona:
-- **Ritmo de la planta:** Patrones de movimiento del tallo/hojas (crecimiento, respuesta a luz, estrés hídrico)
-- **Condiciones de suelo:** Humedad, nitrógeno, temperatura
-
-**Detecta estrés cuando el ritmo se desvía de su patrón normal para condiciones de suelo conocidas.**
-
----
-
-## Especificaciones Técnicas
-
-### Sensado de Suelo
-
-| Parámetro | Valor |
-|-----------|-------|
-| Humedad | Rango 0–100%, precisión ±3% |
-| Nitrógeno | Rango 0–500 ppm, precisión ±10% |
-| Frecuencia de muestreo | 15–60 min (configurable) |
-
-### Sensado de Ritmo
-
-| Parámetro | Valor |
-|-----------|-------|
-| Sensor | Acelerómetro MPU-6050 (3 ejes) |
-| Rango | ±2g / ±4g / ±8g (configurable) |
-| Frecuencia de muestreo | 10–100 Hz |
-| Resolución | 16 bits por eje |
-
-### Procesamiento (IA en el edge)
-
-| Parámetro | Valor |
-|-----------|-------|
-| Plataforma | ESP32 (Bajo costo) / Raspberry Pi (Mayor capacidad) |
-| Modelo | Random Forest / TinyML (TensorFlow Lite) |
-| Entrenamiento | Patrones de ritmo vs condiciones de suelo |
-| Salida | Diagnóstico (estrés hídrico, deficiencia de nitrógeno, normal) + acción sugerida |
-
----
+- Agricultores que quieren regar o fertilizar solo cuando es necesario.
+- Empresas agrícolas que buscan reducir costos de insumos.
+- Invernaderos automatizados.
+- Investigación en fisiología vegetal.
 
 ## Estado actual
 
-✅ Concepto arquitectónico definido  
-✅ Especificaciones técnicas preliminares  
-✅ Selección de sensores validada  
-🔲 Prototipo de hardware integrado  
-🔲 Recolección de datos para entrenamiento  
-🔲 Modelo de IA entrenado  
-🔲 Validación en cultivos reales
+- Concepto definido.
+- Especificaciones técnicas completas.
+- Sensores seleccionados.
+- Prototipo en desarrollo.
+- Validación en cultivos reales pendiente.
 
----
+## Licencia
 
-## Estructura del repositorio
-
-
-RizoRhythm/
-├── README.md
-├── LICENSE
-├── CHANGELOG.md
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── AUTHORS.md
-├── LEGAL_CLAIM.md
-├── docs/ # Documentación técnica
-├── firmware/ # Código para sensores y procesamiento
-├── hardware/ # Diseños de PCB, esquemáticos
-├── simulations/ # Modelos de crecimiento y estrés
-└── media/ # Gráficos, diagramas
-
-
----
-
-## Próximos pasos
-
-1. **Prototipo hardware** — Integrar sensores de suelo y acelerómetro en una placa ESP32.
-2. **Recolección de datos** — Registrar ritmos de plantas bajo distintas condiciones de suelo.
-3. **Entrenamiento de modelo** — Entrenar IA para clasificar estrés.
-4. **Validación en campo** — Probar en cultivos reales (ej. tomate, maíz).
-
----
-
-## Proyectos relacionados
-
-- **OsteoFlux** — sistema de intervención ósea basado en resonancia  
-  [Repositorio](https://github.com/enriqueherbertag-lgtm/osteoflux)
-
-- **Resonador-432** — dispositivo médico de resonancia dual  
-  [Repositorio](https://github.com/enriqueherbertag-lgtm/Resonador-432)
-
-- **CORPUS** — sistema corporal artificial para IA  
-  [Repositorio](https://github.com/enriqueherbertag-lgtm/Corpus)
-
----
-
-
+Copyright © 2026 Enrique Aguayo. Todos los derechos reservados.
 
 ## Autor
 
-**Enrique Aguayo H.**  
-Investigador independiente, Mackiber Labs  
-Contacto: eaguayo@migst.cl  
-ORCID: 0009-0004-4615-6825  
-GitHub: [@enriqueherbertag-lgtm](https://github.com/enriqueherbertag-lgtm)
+Enrique Aguayo H. – Mackiber Labs# RizoRhythm: Diagnóstico agrícola por ritmo de plantas
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19394115.svg)](https://doi.org/10.5281/zenodo.19394115)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+[![EN](https://img.shields.io/badge/English-version-blue.svg)](./README.en.md)
+
+**Un sistema que detecta estrés en plantas antes de que se vean afectadas, midiendo su movimiento y el suelo.**
+
+## ¿Qué problema resuelve?
+
+Los sistemas agrícolas actuales detectan el estrés cuando la planta ya está dañada (hojas amarillas, marchitamiento). Para entonces, ya se perdió producción.
+
+**RizoRhythm detecta el estrés antes. Mucho antes.**
+
+## ¿Qué hace?
+
+Mide dos cosas al mismo tiempo:
+- **Ritmo de la planta**: movimientos del tallo y hojas (acelerómetro MPU-6050).
+- **Condiciones del suelo**: humedad y nitrógeno (sensores capacitivos + ISE).
+
+Una IA en el edge (ESP32 o Raspberry Pi) correlaciona ambos flujos. Si el ritmo se desvía del patrón normal para las condiciones de suelo, alerta automáticamente.
+
+## ¿Qué estrés detecta?
+
+- **Estrés hídrico**: la planta modifica su ritmo antes de marchitarse.
+- **Deficiencia de nitrógeno**: cambios en movimiento foliar antes de que amarillee.
+
+## ¿Para quién es?
+
+- Agricultores que quieren regar o fertilizar solo cuando es necesario.
+- Empresas agrícolas que buscan reducir costos de insumos.
+- Invernaderos automatizados.
+- Investigación en fisiología vegetal.
+
+## Estado actual
+
+- Concepto definido.
+- Especificaciones técnicas completas.
+- Sensores seleccionados.
+- Prototipo en desarrollo.
+- Validación en cultivos reales pendiente.
+
+## Licencia
+
+Copyright © 2026 Enrique Aguayo. Todos los derechos reservados.
+
+## Autor
+
+Enrique Aguayo H. – Mackiber Labs
